@@ -3,83 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>In-House Documentation</title>
+    <title>Genesis Link Docs</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #1e1e1e;
-            color: #c7c7c7;
+            background-color: #121212;
+            color: #e0e0e0;
         }
-        h1, h2, h3 {
-            color: #f9f9f9;
-        }
-        code {
-            background-color: #333;
-            color: #f9f9f9;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        pre {
-            background-color: #2d2d2d;
-            color: #c7c7c7;
-            padding: 10px;
-            border-radius: 4px;
-            overflow-x: auto;
-        }
-        .container {
-            background: #292929;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
-            margin: 40px auto;
-            max-width: 800px;
-        }
-        .code-block {
-            margin: 20px 0;
-        }
-        nav {
-            background: rgba(51, 51, 51, 1);
-            padding: 10px;
+        header {
+            background-color: transparent;
+            color: white;
+            padding: 1em 0;
             text-align: center;
             position: sticky;
             top: 0;
+            width: 100%;
             z-index: 1000;
             transition: background-color 0.3s;
         }
+        nav {
+            padding: 10px;
+            text-align: center;
+        }
         nav a {
-            color: #f9f9f9;
+            color: #e0e0e0;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #1e90ff;
         }
         html {
             scroll-behavior: smooth;
         }
+        h1, h2, h3 {
+            color: #e0e0e0;
+        }
+        .title-section {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
+            text-align: center;
+        }
+        .title-section h1 {
+            font-size: 4em;
+            margin: 0;
+            color: #1e90ff;
+        }
+        .title-section p {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #e0e0e0;
+        }
+        .horizontal-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 0;
+            background: #1e1e1e;
+            width: 100%;
+        }
+        .horizontal-container div {
+            background: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            width: 30%;
+            text-align: center;
+        }
+        .horizontal-container div h3 {
+            color: #1e90ff;
+        }
+        .container {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            margin: 40px auto;
+            max-width: 800px;
+        }
         footer {
             text-align: center;
             padding: 1em 0;
-            background: #333;
+            background: #2b2b2b;
             color: white;
         }
     </style>
 </head>
 <body>
-    <nav id="header">
-        <a href="#introduction">Introduction</a>
-        <a href="#setup">Setup</a>
-        <a href="#usage">Usage</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <header id="header">
+        <nav>
+            <a href="#introduction">Introduction</a>
+            <a href="#setup">Setup</a>
+            <a href="#usage">Usage</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="title-section">
+        <h1>Genesis Link Docs</h1>
+        <p>Empowering creative gamers to create, publish, and share their own games effortlessly.</p>
+    </div>
+
+    <div class="horizontal-container">
+        <div>
+            <h3>Empowering Gamers</h3>
+            <p>The games we play shouldn't be limited to the latest releases of big AAA studios, but rather the most popular and fun games of the present day. Let gamers decide the game which deserves the spotlight. Enable the community to have a choice in what happens next.</p>
+        </div>
+        <div>
+            <h3>Passion Driven</h3>
+            <p>Passion proves mastery. When there's a well-guided passion within a project and its team, there's little to nothing that stops them from achieving greatness. Support these passion-driven experiences, for this is when true appreciation is deserved.</p>
+        </div>
+        <div>
+            <h3>Our Purpose</h3>
+            <p>At Genesis Link, we believe in empowering creative gamers to realize their full potential and express their creativity through game development. We achieve this by providing intuitive, real-time tools that make game development accessible and seamless.</p>
+        </div>
+    </div>
 
     <div class="container">
-        <h1 id="introduction">In-House Documentation</h1>
-        <section>
+        <section id="introduction">
             <h2>Introduction</h2>
             <p>Welcome to the in-house documentation site. Here you will find all the necessary information to get started and use our systems effectively.</p>
         </section>
@@ -108,15 +155,14 @@
     </div>
 
     <footer>
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
+        <p>&copy; 2024 Social Arc Entertainment. All rights reserved.</p>
     </footer>
 
     <script>
         window.addEventListener('scroll', function() {
             const header = document.getElementById('header');
-            const opacity = Math.max(1 - window.scrollY / 200, 0);
-            header.style.backgroundColor = `rgba(51, 51, 51, ${opacity})`;
-            header.style.borderBottomColor = 'transparent';
+            const opacity = Math.min(window.scrollY / 200, 1);
+            header.style.backgroundColor = `rgba(30, 30, 30, ${opacity})`;
         });
     </script>
 </body>
