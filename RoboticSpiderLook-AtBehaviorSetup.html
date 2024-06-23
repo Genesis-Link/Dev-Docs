@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotic Spider Look-At Behavior Setup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: #c7c7c7;
+        }
+        h1, h2, h3 {
+            color: #f9f9f9;
+        }
+        code {
+            background-color: #333;
+            color: #f9f9f9;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #c7c7c7;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .container {
+            background: #292929;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+            margin: 40px auto;
+            max-width: 800px;
+        }
+        .code-block {
+            margin: 20px 0;
+        }
+        nav {
+            background: rgba(51, 51, 51, 1);
+            padding: 10px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        nav a {
+            color: #f9f9f9;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav id="header">
+        <a href="#introduction">Introduction</a>
+        <a href="#skeleton-structure">Skeleton Structure</a>
+        <a href="#behavior-logic">Behavior Logic</a>
+        <a href="#final-steps">Final Steps</a>
+    </nav>
+
+    <div class="container">
+        <h1 id="introduction">Robotic Spider Look-At Behavior Setup</h1>
+        <p>This document outlines the steps to create a life-like 'Look-At' behavior for a robotic spider character using Unreal Engine Blueprints. The spider bot will use its 'body' bone's x-vector as its sight line and dynamically look at locations based on its state and the attack target's position.</p>
+
+        <h2 id="skeleton-structure">Skeleton Structure</h2>
+        <pre>
+Armature_000
+├── root
+│   ├── body
+│   │   └── body_end
+│   ├── leg_back_l
+│   │   ├── S_Muzzle_BL
+│   │   └── leg_back_l_end
+│   ├── leg_back_r
+│   │   ├── S_Muzzle_BR
+│   │   └── leg_back_r_end
+│   ├── leg_front_l
+│   │   ├── S_Muzzle_FL
+│   │   └── leg_front_l_end
+│   └── leg_front_r
+│       ├── S_Muzzle_FR
+│       └── leg_front_r_end
+        </pre>
+
+        <h2 id="behavior-logic">Behavior Logic</h2>
+
+        <h3>1. Adding and Configuring the Spline Component</h3>
+        <ol>
+            <li><strong>Add a Spline Component:</strong>
+                <p>In your spider bot actor, add a Spline Component. This component will define the path for the look-at target.</p>
+            </li>
+            <li><strong>Dynamically Define Spline Points:</strong>
+                <div class="code-block">
+                    <pre><code>void UpdateLookAtSpline(FVector LookAtTarget)
+{
+    SplineComponent->ClearSplinePoints();
+    SplineComponent->AddSplinePoint(GetActorLocation(), ESplineCoordinateSpace::World);
+    SplineComponent->AddSplinePoint(LookAtTarget, ESplineCoordinateSpace::World);
+    SplineComponent->UpdateSpline();
+}</code></pre>
+                </div>
+            </li>
+        </ol>
+
+        <h3>2. Using Control Rig for Smooth Interpolation</h3>
+        <ol>
+            <li><strong>Create a Control Rig:</strong>
+                <p>Set up a Control Rig for the spider bot’s skeleton. Control the 'body' bone’s rotation based on spline interpolation.</p>
+            </li>
+            <li><strong>Interpolate Along the Spline:</strong>
+                <div class="code-block">
+                    <pre><code>void InterpolateLookAt()
+{
+    float SplineLength = SplineComponent->GetSplineLength();
+    float Alpha = FMath::Clamp(Time / Duration, 0.0f, 1.0f);
+    FVector LookAtLocation = SplineComponent->GetLocationAtDistanceAlongSpline(SplineLength * Alpha, ESplineCoordinateSpace::World);
+    
+    ControlRig->SetBoneTransform("body", FTransform(LookAtLocation), EControlRigTransformType::InitialLocal, false);
+}</code></pre>
+                </div>
+            </li>
+        </ol>
+
+        <h3>3. Blending Look-At Behavior in Animation Blueprint</h3>
+        <ol>
+            <li><strong>Property Access Node:</strong>
+                <p>Add a Property Access node to get the LookAtLocation from your actor.</p>
+            </li>
+            <li><strong>Use LookAt Node:</strong>
+                <p>Use the LookAt node in the AnimGraph to drive the 'body' bone rotation.</p>
+            </li>
+        </ol>
+
+        <h3>4. Custom Blueprint Node for Look-At Logic</h3>
+        <ol>
+            <li><strong>Create Custom Blueprint Node:</strong>
+                <div class="code-block">
+                    <pre><code>UFUNCTION(BlueprintCallable, Category="LookAt")
+void UpdateLookAtLocation(FVector NewLookAtLocation)
+{
+    UpdateLookAtSpline(NewLookAtLocation);
+}</code></pre>
+                </div>
+            </li>
+        </ol>
+
+        <h3>5. Implement Look-At Behavior in Actor</h3>
+        <ol>
+            <li><strong>Update Look-At Location on Tick:</strong>
+                <div class="code-block">
+                    <pre><code>void Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+    
+    if (bIsIdle)
+    {
+        FVector NewGoal = GetRandomLocationAroundSpiderBot();
+        UpdateLookAtLocation(NewGoal);
+    }
+    else
+    {
+        UpdateLookAtLocation(CurrentTargetLocation);
+    }
+    
+    InterpolateLookAt();
+}</code></pre>
+                </div>
+            </li>
+        </ol>
+
+        <h2 id="final-steps">Final Steps</h2>
+        <ol>
+            <li><strong>Test the Setup:</strong>
+                <p>Ensure smooth transitions and natural movement by testing in various scenarios.</p>
+            </li>
+            <li><strong>Fine-Tune Interpolation:</strong>
+                <p>Adjust parameters for the best visual results.</p>
+            </li>
+        </ol>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            const opacity = Math.max(1 - window.scrollY / 200, 0);
+            header.style.backgroundColor = `rgba(51, 51, 51, ${opacity})`;
+            header.style.borderBottomColor = 'transparent';
+        });
+    </script>
+</body>
+</html>
