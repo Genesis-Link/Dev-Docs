@@ -1,0 +1,3 @@
+# Our Purpose
+
+"At Genesis Link, we believe in empowering creative gamers to realize their full potential and express their creativity through game development. We achieve this by providing intuitive, real-time tools that make game development accessible and seamless, removing traditional barriers and complexities. Our platform allows gamers to effortlessly create, publish, and share their own games without ever leaving the immersive experience."

@@ -1,0 +1,3 @@
+# Passion Driven
+
+Passion proves mastery. “When you get the thrills and chills, they must have the skills and bills.” When there’s a well-guided passion within a project and its team, there’s little to nothing that stops them from achieving greatness. Its level of success should be decided by how well that passion translates to its experience. There can be a passion to create, and a passion for success, but unless there’s a passion-driven experience, it’s no success worth having. Gamers who experience this must play a part in speaking their voice of opinion, and support these passion-driven experiences, for this is when true appreciation is deserved.  

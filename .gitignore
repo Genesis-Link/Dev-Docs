@@ -74,6 +74,7 @@ Plugins/*/Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-# Ignore the GL_MainCharacter directory
-Plugins/GL_AI_Plugin/*
-Plugins/GL_AI_Plugin/
+# Ignore files
+docs/.vitepress/dist
+docs/.vitepress/cache
+node_modules
