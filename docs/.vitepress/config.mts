@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Genesis Link Docs",
   description: "Empowering creative gamers to create, publish and share their own games effortlessly.",
   base: '/Dev-Docs/', // Add this line, replace 'Dev-Docs' with your actual repository name
+  assetsDir: 'assets',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
