@@ -10,7 +10,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Introduction', link: '/introduction/' },
-      { text: 'Docs', link: '/documentation/' }
+      { text: 'Docs', link: '/documentation/setup' }
     ],
 
     sidebar: {
