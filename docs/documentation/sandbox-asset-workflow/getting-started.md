@@ -14,6 +14,7 @@
    - This is the lowest level class with all required functionality.
    ![](/BuildObjects.png)
    ![](/ClipTest.gif)
+   ![](/1_SAWF.webp)
 
 
 2. Place the new class in the root `SandboxAssetClasses` directory.
