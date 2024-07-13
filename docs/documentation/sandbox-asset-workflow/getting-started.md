@@ -24,7 +24,7 @@
 
 4. Assign a unique Asset Manager ID.
    - Must be unique and without spaces.
-   ![](/4_SAWF.webp)
+   ![](/25_SAWF.webp)
 
 ### 2. Implement Light Functionality
 
@@ -32,52 +32,54 @@
    - Implement in the parent class for use by other light classes.
    - Create a `ToggleLight` function (not implemented in master class).
    - Implement `CallSandboxEvent` for script node calls.
-   ![](/5_SAWF.webp)
+   ![](/15_SAWF.webp)
 
 ### 3. Create the Specific Light Asset
 
 6. Create a new directory for the new SandboxAsset classes.
-   ![](/6_SAWF.webp)
+   ![](/4_SAWF.webp)
 
 7. Create a new sandbox asset class inheriting from `BP_SA_LightSource_Master`.
-   ![](/7_SAWF.webp)
-   ![](/8_SAWF.webp)
+   ![](/5_SAWF.webp)
+   ![](/6_SAWF.webp)
 
 8. Fill out the defaults:
    - Set Sandbox metadata (used in frontend features and queries).
    - Add the Lights script library to enable targeted nodes.
-   ![](/9_SAWF.webp)
+   ![](/12_SAWF.webp)
 
 9. Add a point light component.
-   ![](/10_SAWF.webp)
+   ![](/23_SAWF.webp)
 
 10. Set its default visibility to false.
-    ![](/11_SAWF.webp)
+    ![](/24_SAWF.webp)
 
 11. Override the parent's `ToggleLight` event to toggle visibility.
-    ![](/12_SAWF.webp)
+    ![](/16_SAWF.webp)
 
+::: info
 **Note:** This completes the sandbox asset implementation. Next, we'll create a task to toggle the light visibility.
+:::
 
 ## Creating a Task Node for Sandbox Assets
 
 ### 1. Set Up the Task Node
 
 1. Create a new directory in OpenLogic for the lights objects class.
-   ![](/13_SAWF.webp)
+   ![](/7_SAWF.webp)
 
 2. Create the task object, inheriting from `OLT_Master`.
-   ![](/14_SAWF.webp)
+   ![](/8_SAWF.webp)
 
 3. Disable tick (we won't be using it for this task).
-   ![](/15_SAWF.webp)
+   ![](/9_SAWF.webp)
 
 ### 2. Configure Node Properties
 
 4. Create a new node category gameplay tag.
    - Use the `DT_NodeCategories` table.
    - The node category is required for correct mapping in the node browser.
-   ![](/16_SAWF.webp)
+   ![](/10_SAWF.webp)
 
 5. Fill out the task defaults:
    - Name it "Toggle Light"
@@ -89,7 +91,7 @@
      - 1 output execution
      - 1 target object
      - 1 boolean
-   ![](/17_SAWF.webp)
+   ![](/13_SAWF.webp)
 
 ### 3. Implement Node Logic
 
@@ -102,17 +104,17 @@
    - Use `CallFlowPinExecute` for visual execution animation
    - Use `CallOutputPin` to trigger connected output execution
    - Call `CompleteTask` to end the node's execution
-   ![](/18_SAWF.webp)
+   ![](/14_SAWF.webp)
 
 7. Override `GetInputPinDefaults` for the target pin:
    - Set `BP_SA_LightSource_Master` as the default value
    - Set pin type as SoftObject, single, and PinID 2
-   ![](/19_SAWF.webp)
+   ![](/20_SAWF.webp)
 
 8. Override `GetRequiredClass`:
    - This helps node browsers determine which nodes to show when context-sensitive
    - Use the same master class created for lights
-   ![](/20_SAWF.webp)
+   ![](/21_SAWF.webp)
 
 ### 4. Update Data Tables
 
@@ -120,7 +122,7 @@
    - Run `EUW_ScriptiongDebugPanel`
    - Trigger both batch operations to refresh entire tables
    - This ensures content can be queried correctly
-   ![](/21_SAWF.webp)
+   ![](/17_SAWF.webp)
 
 ## The Finished Feature
 
