@@ -4,12 +4,13 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Genesis Link Docs",
   description: "Empowering creative gamers to create, publish and share their own games effortlessly.",
+  base: '/Dev-Docs/', // Add this line, replace 'Dev-Docs' with your actual repository name
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Introduction', link: '/introduction/' },
-      { text: 'Docs', link: '/documentation/setup.md' }
+      { text: 'Docs', link: '/documentation/' }
     ],
 
     sidebar: {
