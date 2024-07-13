@@ -12,7 +12,7 @@
 
 1. Choose `BP_SandboxAssetMaster` as the parent class.
    - This is the lowest level class with all required functionality.
-   ![](/BuildObjects.png)
+   ![](/BuildObjects.jpg)
    ![](/ClipTest.gif)
    ![](/1_SAWF.webp)
 
