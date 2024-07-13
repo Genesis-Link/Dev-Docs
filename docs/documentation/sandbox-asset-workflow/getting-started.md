@@ -12,7 +12,7 @@
 
 1. Choose `BP_SandboxAssetMaster` as the parent class.
    - This is the lowest level class with all required functionality.
-   ![Base Class Selection](/1_SAWF.png)
+   <img src="/1_SAWF.png" alt="Base Class Selection" width="300" height="200">
 
 2. Place the new class in the root `SandboxAssetClasses` directory.
    - This directory is for all base classes meant to be inherited from.
