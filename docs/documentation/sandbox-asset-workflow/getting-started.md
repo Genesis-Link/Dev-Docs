@@ -12,14 +12,11 @@
 
 1. Choose `BP_SandboxAssetMaster` as the parent class.
    - This is the lowest level class with all required functionality.
-   ![](/BuildObjects.jpg)
-   ![](/ClipTest.gif)
    ![](/1_SAWF.webp)
-
 
 2. Place the new class in the root `SandboxAssetClasses` directory.
    - This directory is for all base classes meant to be inherited from.
-   ![](/2_SAWF.png)
+   ![](/2_SAWF.webp)
 
 3. Make the class abstract.
    - We don't want to use this parent class directly in-game.
