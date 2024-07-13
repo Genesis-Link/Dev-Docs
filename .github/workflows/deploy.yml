@@ -30,10 +30,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build with VitePress
+        run: npm run docs:build
+      - name: Create .htaccess file
         run: |
-          npm run docs:build
-      - name: List contents of dist directory
-        run: ls -R docs/.vitepress/dist
+          echo "AddType image/png .png" > docs/.vitepress/dist/.htaccess
+          echo "AddType image/webp .webp" >> docs/.vitepress/dist/.htaccess
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
